@@ -6,10 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartReducer from "./features/cart";
+import categoryReducer from "./features/category";
 
 const store = configureStore({
   reducer: {
     cart: cartReducer,
+    categories: categoryReducer,
   },
 });
 
