@@ -7,7 +7,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartReducer from "./features/cart";
 import categoryReducer from "./features/category";
-import productReducer from "./features/product";
+import productReducer from "./features/products";
 
 const store = configureStore({
   reducer: {

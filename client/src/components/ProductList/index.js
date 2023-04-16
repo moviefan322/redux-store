@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ProductItem from "../ProductItem";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProducts } from "../../utils/features/products";
+import { updateProducts } from "../../features/products";
 import { useQuery } from "@apollo/client";
 import { QUERY_PRODUCTS } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";

@@ -8,8 +8,8 @@ import {
   removeFromCart,
   updateCartQuantity,
   addToCart,
-} from "../utils/features/cart";
-import { updateProducts } from "../utils/features/products";
+} from "../features/cart";
+import { updateProducts } from "../features/products";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 import spinner from "../assets/spinner.gif";
