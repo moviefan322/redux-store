@@ -5,10 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import cartReducer from "./features/cart";
 
 const store = configureStore({
   reducer: {
-    // Add the reducer here
+    cart: cartReducer,
   },
 });
 
