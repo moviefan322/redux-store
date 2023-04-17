@@ -8,6 +8,7 @@ import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
 
 function ProductList() {
+
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
@@ -29,19 +30,21 @@ function ProductList() {
   }, [data, loading, dispatch]);
 
   function filterProducts() {
-    if (!currentCategory) {
-      return state.products;
+    if (currentCategory === undefined) {
+      return state.products.products;
     }
 
-    return state.products.filter(
+    return state.products.products.filter(
       (product) => product.category._id === currentCategory
     );
   }
 
+  console.log("state.products.products", state.products.products);
+
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.products.length ? (
+      {state.products.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
             <ProductItem

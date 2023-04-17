@@ -1,8 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { createRoot } from "react-dom/client";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartReducer from "./features/cart";
@@ -16,10 +16,12 @@ const store = configureStore({
     products: productReducer,
   },
 });
+store.subscribe(() => {
+  console.log(store.getState());
+});
+console.log(store.getState());
 
-const rootElement = document.getElementById("root");
-
-ReactDOM.createRoot(rootElement).render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />

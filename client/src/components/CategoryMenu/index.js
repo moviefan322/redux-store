@@ -16,16 +16,17 @@ function CategoryMenu() {
   useEffect(() => {
     if (categoryData) {
       dispatch(updateCategories(categoryData.categories));
+      idbPromise("categories", "put", categoryData.categories);
     } else if (!loading) {
       idbPromise("categories", "get").then((categories) => {
-        dispatch(updateCategories(categoryData.categories));
+        dispatch(updateCategories(categories));
       });
     }
   }, [categoryData, loading, dispatch]);
 
-  const handleClick = (id) => {
-    dispatch(updateCurrentCategory(id));
-  };
+  function handleClick(categoryId) {
+    dispatch(updateCurrentCategory(categoryId));
+  }
 
   return (
     <div>
