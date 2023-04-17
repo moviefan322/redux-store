@@ -26,12 +26,22 @@ function ProductList() {
     }
   }, [data, loading, dispatch]);
 
+  function filterProducts() {
+    if (!currentCategory) {
+      return products.products[0];
+    }
+
+    return products.products[0].filter(
+      (product) => product.category._id === currentCategory
+    );
+  }
+
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
       {products.products.length ? (
         <div className="flex-row">
-          {products.products[0].map((product) => (
+          {filterProducts().map((product) => (
             <ProductItem
               key={product._id}
               _id={product._id}
