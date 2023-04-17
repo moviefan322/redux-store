@@ -28,6 +28,8 @@ function CategoryMenu() {
     dispatch(updateCurrentCategory(categoryId));
   }
 
+
+
   return (
     <div>
       <h2>Choose a Category:</h2>

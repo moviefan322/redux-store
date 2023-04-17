@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProductItem from "../ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../../features/products";
@@ -8,12 +8,9 @@ import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
 
 function ProductList() {
-
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-
-  const { currentCategory } = state;
-
+  const products = useSelector((state) => state.products);
+  const { currentCategory } = useSelector((state) => state.categories);
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   useEffect(() => {
@@ -29,24 +26,12 @@ function ProductList() {
     }
   }, [data, loading, dispatch]);
 
-  function filterProducts() {
-    if (currentCategory === undefined) {
-      return state.products.products;
-    }
-
-    return state.products.products.filter(
-      (product) => product.category._id === currentCategory
-    );
-  }
-
-  console.log("state.products.products", state.products.products);
-
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.products.products.length ? (
+      {products.products.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
+          {products.products[0].map((product) => (
             <ProductItem
               key={product._id}
               _id={product._id}

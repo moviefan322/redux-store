@@ -19,7 +19,6 @@ const store = configureStore({
 store.subscribe(() => {
   console.log(store.getState());
 });
-console.log(store.getState());
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

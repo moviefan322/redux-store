@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCartQuantity } from "../../features/cart";
+import { updateCartQuantity, addToCart } from "../../features/cart";
 import { idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
+  const state = useSelector((state) => state);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
