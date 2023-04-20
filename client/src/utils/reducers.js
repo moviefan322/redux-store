@@ -1,4 +1,3 @@
-import { useReducer } from 'react';
 import {
   UPDATE_PRODUCTS,
   ADD_TO_CART,
@@ -11,23 +10,28 @@ import {
   TOGGLE_CART,
 } from './actions';
 
-// TODO: To get a better understand of how a reducer works - add comments to the various actions in the reducer
-export const reducer = (state, action) => {
+const initialState = {
+  products: [],
+  cart: [],
+  cartOpen: false,
+  categories: [],
+  currentCategory: '',
+};
+
+export const reducers = (state = initialState, action) => {
   switch (action.type) {
-    // TODO: Add a comment describing the functionality of the UPDATE_PRODUCTS case
-    // Your comment here
     case UPDATE_PRODUCTS:
       return {
         ...state,
         products: [...action.products],
       };
 
-    case ADD_TO_CART:
-      return {
-        ...state,
-        cartOpen: true,
-        cart: [...state.cart, action.product],
-      };
+      case ADD_TO_CART:
+        return {
+          ...state,
+          cartOpen: true,
+          cart: [...state.cart, action.product],
+        };
 
     case ADD_MULTIPLE_TO_CART:
       return {
@@ -35,7 +39,7 @@ export const reducer = (state, action) => {
         cart: [...state.cart, ...action.products],
       };
     // TODO: Add a comment describing the functionality of the UPDATE_CART_QUANTITY case
-    // Your comment here
+    // Updates the quantity of the product in the cart
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
@@ -49,7 +53,7 @@ export const reducer = (state, action) => {
       };
 
     // TODO: Add a comment describing the functionality of the REMOVE_FROM_CART case
-    // Your comment here
+    // Removes the product from the cart
     case REMOVE_FROM_CART:
       let newState = state.cart.filter((product) => {
         return product._id !== action._id;
@@ -87,12 +91,10 @@ export const reducer = (state, action) => {
       };
 
     // TODO: Add a comment describing what the default case is for
-    // Your comment here
+    // returns the current state if the action type is not recognized
     default:
       return state;
   }
 };
 
-export function useProductReducer(initialState) {
-  return useReducer(reducer, initialState);
-}
+export default reducers;
